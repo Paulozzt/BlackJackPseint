@@ -7,7 +7,7 @@ Algoritmo JuegoBlackJackv2
 	
 	Definir OPCIONELEGIDA como entero
 	Repetir
-		// Ver menú
+		// Menú con Opcion de Juego (funcion) y de salida
 		Limpiar Pantalla
 		Escribir "Elige un Juego"
 		Esperar 1 segundos
@@ -18,7 +18,7 @@ Algoritmo JuegoBlackJackv2
 		Leer OPCIONELEGIDA
 		Borrar Pantalla
 		
-		// Mostrar la elección del jugador
+		// Mostrar elección del jugador
 		Segun OPCIONELEGIDA Hacer
 			1:
 				Escribir  "Elegiste Black Jack"
@@ -37,7 +37,7 @@ Algoritmo JuegoBlackJackv2
 FinProceso
 
 
-
+// Algoritmo Principal del Juego Black Jack en forma de Subproceso 
 SubProceso BlackJack
 		definir baraja, i, cartas, puntos como Entero;
 		Dimension baraja[52];
@@ -59,7 +59,7 @@ SubProceso BlackJack
 FinSubProceso
 
 
-
+// Esta funcion crea una baraja del 0 al 51 pero sin la carta N#14
 Funcion crearBaraja(lista)
 	Definir i, cuenta Como Entero
 	i=0
@@ -75,6 +75,7 @@ Funcion crearBaraja(lista)
 	FinPara
 FinFuncion
 
+// Se mezclan las cartas de la baraja ya creada guardandolas en distintos auxiliares con funcion Azar 
 Funcion mezclarBaraja(lista)
 	Definir posAzar1, posAzar2 Como Entero
 	posAzar1=0
@@ -92,6 +93,8 @@ Funcion mezclarBaraja(lista)
 	FinPara
 FinFuncion
 
+// Las cartas del Black Jack tienen como valor maximo el 10, esta funcion le asigna el valor 10 si la carta lo supera
+// En caso de ser un AS pregunta al usuario que valor desea que tome
 Funcion resultado<-tomarCarta(lista, posicion Por Referencia)
 	Definir resultado Como Entero
 	resultado <- lista[posicion]
@@ -109,6 +112,7 @@ Funcion resultado<-tomarCarta(lista, posicion Por Referencia)
 	posicion<-posicion+1
 FinFuncion
 
+// Turno del Jugador para jugar, los valores no deben superar 21 sino pierde automaticamente
 Funcion tiradaJugador(lista,posicion Por Referencia, puntuacion Por Referencia)
 	Definir respuesta como cadena 
 	respuesta=""
@@ -138,6 +142,7 @@ Funcion tiradaJugador(lista,posicion Por Referencia, puntuacion Por Referencia)
 	FinSi
 FinFuncion
 
+// Turno del Crupier para levantar cartas y que su valor no supere 10 y elegir el valor del AS
 Funcion resultado<-tomarCartaCrupier(lista,posicion Por Referencia, puntosJugador Por Referencia, puntosCrupier Por Referencia)
 	definir resultado Como Entero
 	resultado=lista[posicion]
@@ -156,6 +161,7 @@ Funcion resultado<-tomarCartaCrupier(lista,posicion Por Referencia, puntosJugado
 	FinSi
 FinFuncion
 
+// Turno del Crupier para jugar y levantar
 Funcion tiradaCrupier(lista,posicion Por Referencia, puntosJugador Por Referencia, puntosCrupier Por Referencia)
 	Definir respuesta como cadena
 	respuesta=""
